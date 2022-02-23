@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ListView2Screen extends StatelessWidget {
-  final options = const ['Megaman', 'Starcraft', 'Gears','Overwatch'];
+  final options = const ['Megaman', 'Starcraft', 'Gears','Overwatch','Diablo'];
 
   const ListView2Screen({Key? key}) : super(key: key);
 
