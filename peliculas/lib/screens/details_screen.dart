@@ -1,15 +1,14 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:peliculas/models/models.dart';
 import 'package:peliculas/widgets/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 // TODO: cambiar luego por una instancia de movie
-    final String movie =
-        ModalRoute.of(context)?.settings.arguments.toString() ?? 'no movie';
-
+    final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
     return Scaffold(
         body: CustomScrollView(
       slivers: [
@@ -51,7 +50,7 @@ class _CustomAppBar extends StatelessWidget {
         ),
         background: FadeInImage(
           placeholder: AssetImage('assets/loading.gif'),
-          image: NetworkImage('http://cohenwoodworking.com/wp-content/uploads/2016/09/image-placeholder-500x500.jpg'),
+          image: NetworkImage('https://via.placeholder.com/500x300'),
           fit: BoxFit.cover,
         ),
       ),
@@ -72,7 +71,7 @@ class _PosterAndTitle extends StatelessWidget {
             borderRadius: BorderRadius.circular(25),
             child: FadeInImage(
               placeholder: AssetImage('assets/no-image.jpg'),
-              image: NetworkImage('http://cohenwoodworking.com/wp-content/uploads/2016/09/image-placeholder-500x500.jpg'),
+              image: NetworkImage('https://via.placeholder.com/200x300'),
               height: 150,
             ),
           ),
