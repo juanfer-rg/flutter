@@ -42,6 +42,7 @@ class _CustomAppBar extends StatelessWidget {
         title: Container(
           width: double.infinity,
           alignment: Alignment.bottomCenter,
+          padding: EdgeInsets.only(bottom: 10),
           color: Colors.black12,
           child: Text(
             'movie titlte',
@@ -50,7 +51,7 @@ class _CustomAppBar extends StatelessWidget {
         ),
         background: FadeInImage(
           placeholder: AssetImage('assets/loading.gif'),
-          image: NetworkImage('https://via.placeholder.com/500x300'),
+          image: NetworkImage('http://cohenwoodworking.com/wp-content/uploads/2016/09/image-placeholder-500x500.jpg'),
           fit: BoxFit.cover,
         ),
       ),
@@ -71,7 +72,7 @@ class _PosterAndTitle extends StatelessWidget {
             borderRadius: BorderRadius.circular(25),
             child: FadeInImage(
               placeholder: AssetImage('assets/no-image.jpg'),
-              image: NetworkImage('https://via.placeholder.com/200x300'),
+              image: NetworkImage('http://cohenwoodworking.com/wp-content/uploads/2016/09/image-placeholder-500x500.jpg'),
               height: 150,
             ),
           ),

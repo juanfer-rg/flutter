@@ -7,7 +7,6 @@ class CastigCards extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 30),
       width: double.infinity,
       height: 180,
-      color: Colors.red,
       child: ListView.builder(
         itemCount: 10,
         scrollDirection: Axis.horizontal,
@@ -24,26 +23,24 @@ class _CastCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 10),
       width: 110,
       height: 100,
-      color: Colors.blue,
       child: Column(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(25),
-            child: FadeInImage(
-              placeholder: AssetImage('assets/no-image.jpg'),
-              image: NetworkImage('https://via.placeholder.com/300x400'),
-              width: 140,
-              height: 100,
-              fit: BoxFit.cover,
-              
+              borderRadius: BorderRadius.circular(25),
+              child: FadeInImage(
+                placeholder: AssetImage('assets/no-image.jpg'),
+                image: NetworkImage('http://cohenwoodworking.com/wp-content/uploads/2016/09/image-placeholder-500x500.jpg'),
+                width: 100,
+                height: 140,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
           SizedBox(height: 5),
           Text(
             'actor.name 11asdasdad adadfsdfsd',
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.left,
           )
         ],
       ),
