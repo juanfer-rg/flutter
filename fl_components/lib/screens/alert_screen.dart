@@ -8,39 +8,40 @@ class AlertScreen extends StatelessWidget {
 
   void displayDialogAndroid(BuildContext context) {
     showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            elevation: 5,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: const Text('titulo'),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                Text('este es el contenido de la alerta'),
-                SizedBox(
-                  height: 5,
-                ),
-                FlutterLogo(
-                  size: 100,
-                )
-              ],
-            ),
-            actions: [
-              TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text(
-                    'Cancelar',
-                    style: TextStyle(color: Colors.red),
-                  )),
-              TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('OK')),
+      barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          elevation: 5,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          title: const Text('titulo'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              Text('este es el contenido de la alerta'),
+              SizedBox(
+                height: 5,
+              ),
+              FlutterLogo(
+                size: 100,
+              )
             ],
-          );
-        });
+          ),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text(
+                  'Cancelar',
+                  style: TextStyle(color: Colors.red),
+                )),
+            TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('OK')),
+          ],
+        );
+      },
+    );
   }
 
   void displayDialogIos(BuildContext context) {
