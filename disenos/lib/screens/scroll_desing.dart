@@ -5,8 +5,14 @@ class ScrollScreen extends StatelessWidget {
     gradient: LinearGradient(
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
-        stops: [0.5, 0.5],
-        colors: [Color(0xff7aecca), Color(0xff30BAD6)]),
+        stops: [
+          0.5,
+          0.5
+        ],
+        colors: [
+          Color(0xff000000),
+          Color(0xff000000),
+        ]),
   );
 
   @override
@@ -77,11 +83,11 @@ class Background extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xff30BAD6),
+      color: Color(0xff000000),
       height: double.infinity,
       alignment: Alignment.topCenter,
       child: Image(
-        image: AssetImage('assets/scroll-1.png'),
+        image: AssetImage('assets/scroll-1.jpg'),
       ),
     );
   }
@@ -91,7 +97,7 @@ class Page2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xff30BAD6),
+      color: Colors.black,
       child: Center(
         child: TextButton(
           onPressed: () {},
@@ -101,7 +107,7 @@ class Page2 extends StatelessWidget {
                 style: TextStyle(color: Colors.white, fontSize: 30)),
           ),
           style: TextButton.styleFrom(
-              backgroundColor: Color(0xff0098fa), shape: StadiumBorder()),
+              backgroundColor: Color(0xff0c237b), shape: StadiumBorder()),
         ),
       ),
     );
