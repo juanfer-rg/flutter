@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import '../providers/ui_provider.dart';
 
@@ -13,12 +14,12 @@ class CustomNavigatorBar extends StatelessWidget {
       elevation: 0,
       items: [
         BottomNavigationBarItem(
-          icon: Icon(Icons.map_outlined),
+          icon: Icon(FontAwesomeIcons.mapLocationDot),
           label: 'Mapa',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.compass_calibration_rounded),
-          label: 'Direcciones',
+          icon: Icon(FontAwesomeIcons.globe),
+          label: 'Direccion Web',
         ),
       ],
     );

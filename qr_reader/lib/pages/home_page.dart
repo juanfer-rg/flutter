@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_reader/pages/pages.dart';
-import 'package:qr_reader/providers/db_provider.dart';
+import 'package:qr_reader/providers/scan_list_provider.dart';
 import 'package:qr_reader/providers/ui_provider.dart';
 import '../widgets/widgets.dart';
 
@@ -10,14 +11,17 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scanListProvider =
+        Provider.of<ScanListProvider>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         title: Text('Historial'),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.delete_forever),
+            onPressed: () => scanListProvider.borrarTodo(),
+            icon: FaIcon(FontAwesomeIcons.eraser),
           )
         ],
       ),
@@ -35,21 +39,20 @@ class _HomePageBody extends StatelessWidget {
     //obtener el select menu opt
     final uiProvider = Provider.of<UiProvider>(context);
 
-    //todo temp leer la base de datos
-    final tempScan = new ScanModel(valor: 'http://google.com.ec');
-    DBProvider.db.nuevoScan(tempScan);
+    //Usar Provider Scana
+    final scanListProvider =
+        Provider.of<ScanListProvider>(context, listen: false);
 
-
-
-    //Cambiar pagina en teoria
     final currenIndex = uiProvider.selectedMenuOpt;
     switch (currenIndex) {
       case 0:
-        return MapaPage();
+        scanListProvider.cargarScanPorTipo('geo');
+        return MapasPages();
       case 1:
+        scanListProvider.cargarScanPorTipo('http');
         return AddressPages();
       default:
-        return MapaPage();
+        return MapasPages();
     }
   }
 }

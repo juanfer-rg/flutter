@@ -1,9 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.qr_reader">
-   <application
+   <application   
         android:label="qr_reader"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyANTHmH43vRwN-MCkxr7MF8v3Xj4FjVg5M"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
