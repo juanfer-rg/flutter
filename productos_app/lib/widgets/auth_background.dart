@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AuthBackground extends StatelessWidget {
+  final Widget child;
+
+  const AuthBackground({
+    Key? key,
+    required this.child,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -10,7 +16,26 @@ class AuthBackground extends StatelessWidget {
       child: Stack(
         children: [
           _PurpleBox(),
+          _HeaderIcon(),
+          this.child,
         ],
+      ),
+    );
+  }
+}
+
+class _HeaderIcon extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Container(
+        width: double.infinity,
+        margin: EdgeInsets.only(top: 30),
+        child: Icon(
+          Icons.person_pin,
+          color: Colors.white,
+          size: 100,
+        ),
       ),
     );
   }
@@ -21,46 +46,56 @@ class _PurpleBox extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Container(
-      width: double.infinity,
-      height: size.height * 0.4,
-      decoration: _purpleBackground(),
-      child: Stack(children: [
-        Positioned(
-          child: _Bubble(),
-          top: 90,
-          left: 30,
+    return ClipRRect(
+      borderRadius: BorderRadius.only(
+        bottomLeft: Radius.circular(25),
+        bottomRight: Radius.circular(25),
+      ),
+      child: Container(
+        width: double.infinity,
+        height: size.height * 0.4,
+        decoration: _purpleBackground(),
+        child: Stack(
+          children: [
+            Positioned(
+              child: _Bubble(),
+              top: 90,
+              left: 30,
+            ),
+            Positioned(
+              child: _Bubble(),
+              top: -10,
+              right: -30,
+            ),
+            Positioned(
+              child: _Bubble(),
+              top: -50,
+              left: -20,
+            ),
+            Positioned(
+              child: _Bubble(),
+              bottom: -50,
+              left: 10,
+            ),
+            Positioned(
+              child: _Bubble(),
+              bottom: 80,
+              right: 20,
+            )
+          ],
         ),
-        Positioned(
-          child: _Bubble(),
-          top: -10,
-          right: -30,
-        ),
-        Positioned(
-          child: _Bubble(),
-          top: -50,
-          left: -20,
-        ),
-        Positioned(
-          child: _Bubble(),
-          bottom: -50,
-          left: 10,
-        ),
-        Positioned(
-          child: _Bubble(),
-          bottom: 80,
-          right: 20,
-        )
-      ]),
+      ),
     );
   }
 
   BoxDecoration _purpleBackground() {
-    return BoxDecoration(
-      gradient: LinearGradient(colors: [
-        Color.fromRGBO(63, 63, 156, 1),
-        Color.fromRGBO(90, 70, 178, 1),
-      ]),
+    return const BoxDecoration(
+      gradient: LinearGradient(
+        colors: [
+          Color.fromRGBO(63, 63, 156, 1),
+          Color.fromRGBO(90, 70, 178, 1),
+        ],
+      ),
     );
   }
 }
