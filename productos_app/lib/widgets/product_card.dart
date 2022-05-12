@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:productos_app/models/models.dart';
 
 class ProductCard extends StatelessWidget {
+  final Product product;
+
+  const ProductCard({Key? key, required this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,12 +17,11 @@ class ProductCard extends StatelessWidget {
         child: Stack(
           alignment: Alignment.bottomLeft,
           children: [
-            _backgroundImage(),
-            _productDetails(),
-            Positioned(top: 0, right: 0, child: _PriceTag()),
-
-            // TODO: mostrar de manera condicional
-            Positioned(top: 0, left: 0, child: _notAvailable()),
+            _backgroundImage(product.picture),
+            _productDetails(product.name, product.id!),
+            Positioned(top: 0, right: 0, child: _PriceTag(product.price)),
+            if (!product.available)
+              Positioned(top: 0, left: 0, child: _notAvailable()),
           ],
         ),
       ),
@@ -66,6 +69,9 @@ class _notAvailable extends StatelessWidget {
 }
 
 class _PriceTag extends StatelessWidget {
+  final double price;
+
+  const _PriceTag(this.price);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -74,7 +80,7 @@ class _PriceTag extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            '\$43434.25',
+            '\$$price',
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
         ),
@@ -94,6 +100,14 @@ class _PriceTag extends StatelessWidget {
 }
 
 class _productDetails extends StatelessWidget {
+  final String title;
+  final String subtitle;
+
+  const _productDetails(
+    this.title,
+    this.subtitle,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -107,7 +121,7 @@ class _productDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Disco Duro G',
+              this.title,
               style: TextStyle(
                   fontSize: 20,
                   color: Colors.white,
@@ -116,7 +130,7 @@ class _productDetails extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
             Text(
-              'ID Disco duro',
+              this.subtitle,
               style: TextStyle(
                 fontSize: 15,
                 color: Colors.white,
@@ -138,6 +152,9 @@ class _productDetails extends StatelessWidget {
 }
 
 class _backgroundImage extends StatelessWidget {
+  final String? url;
+
+  const _backgroundImage(this.url);
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -145,11 +162,16 @@ class _backgroundImage extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 400,
-        child: FadeInImage(
-          placeholder: AssetImage('assets/jar-loading.gif'),
-          image: NetworkImage('https://via.placeholder.com/400x300/f6f6f6'),
-          fit: BoxFit.cover,
-        ),
+        child: url == null
+            ? Image(
+                image: AssetImage("assets/no-image.png"),
+                fit: BoxFit.cover,
+              )
+            : FadeInImage(
+                placeholder: AssetImage('assets/jar-loading.gif'),
+                image: NetworkImage(url!),
+                fit: BoxFit.cover,
+              ),
       ),
     );
   }
