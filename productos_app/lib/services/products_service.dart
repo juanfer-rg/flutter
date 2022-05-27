@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:productos_app/models/models.dart';
@@ -8,6 +9,7 @@ class ProductServices extends ChangeNotifier {
   final String _baseUrl = 'flutter-varios-7609c-default-rtdb.firebaseio.com';
   final List<Product> products = [];
   late Product selectedProduct;
+  File? newPictureFile;
   bool isLoading = true;
   bool isSaving = false;
 
@@ -38,6 +40,7 @@ class ProductServices extends ChangeNotifier {
     notifyListeners();
 
     if (product.id == null) {
+      await this.CreateProduct(product);
       // Es necesario crear
     } else {
       // Es necesario actualizar
@@ -57,5 +60,21 @@ class ProductServices extends ChangeNotifier {
     this.products[index] = product;
 
     return product.id!;
+  }
+
+
+  Future<String> CreateProduct(Product product) async {
+    final url = Uri.https(_baseUrl, 'products.json');
+    final resp = await http.post(url, body: product.toJson());
+    final decodeData = json.decode( resp.body);
+    product.id = decodeData['name'];
+    this.products.add(product);
+    return product.id!;
+  }
+
+  void updateSelectedProductImage(String path) {
+    this.selectedProduct.picture = path;
+    this.newPictureFile = File.fromUri(Uri(path: path));
+    notifyListeners();
   }
 }

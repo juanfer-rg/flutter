@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:productos_app/providers/providers.dart';
 import 'package:productos_app/services/services.dart';
 import 'package:productos_app/ui/input_decorations.dart';
@@ -58,8 +59,12 @@ class _ProductScreenBody extends StatelessWidget {
                       size: 40,
                       color: Colors.white,
                     ),
-                    onPressed: () {
-                      // TODO: Abrir galeria o camara
+                    onPressed: () async {
+                      final picker = new ImagePicker();
+                      final XFile? pickedFile = await picker.pickImage(source: ImageSource.camera, imageQuality: 100,);               
+                      if (pickedFile == null) return;
+                      productServices.updateSelectedProductImage(pickedFile.path);
+
                     },
                   ),
                 )
@@ -128,7 +133,7 @@ class _ProductForm extends StatelessWidget {
                 },
                 keyboardType: TextInputType.number,
                 decoration: InputDecorations.authInputDecoration(
-                  hintText: '\$150',
+                  hintText: '\$10.99',
                   labelText: 'Precio',
                 ),
               ),
