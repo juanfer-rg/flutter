@@ -14,6 +14,7 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('Productos'),
       ),
       body: ListView.builder(
